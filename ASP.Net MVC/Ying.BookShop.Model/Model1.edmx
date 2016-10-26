@@ -4,7 +4,74 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BookShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BookShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_bookinfo">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookTypeId" Type="int" Nullable="false" />
+          <Property Name="BookName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BookType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BookPress" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BookPubDate" Type="datetime" Nullable="false" />
+          <Property Name="BookSize" Type="varbinary" MaxLength="10" Nullable="false" />
+          <Property Name="BookVersion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BookAuthor" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BookTanslor" Type="varchar" MaxLength="10" />
+          <Property Name="Bookisbn" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BookPrice" Type="money" Nullable="false" />
+          <Property Name="BookPages" Type="int" Nullable="false" />
+          <Property Name="BookOutline" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="BookCatalog" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="BookMprice" Type="money" Nullable="false" />
+          <Property Name="BookPrprice" Type="money" Nullable="false" />
+          <Property Name="BookDealmount" Type="int" Nullable="false" />
+          <Property Name="BookLookmount" Type="int" />
+          <Property Name="BookDiscount" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="BookPic" Type="money" Nullable="false" />
+          <Property Name="BookStoremount" Type="int" Nullable="false" />
+          <Property Name="BookStoretime" Type="datetime" Nullable="false" />
+          <Property Name="BookPackstyle" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_booktypeinfo">
+          <Key>
+            <PropertyRef Name="BookTypeId" />
+          </Key>
+          <Property Name="BookTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Customername" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Commentdate" Type="datetime" Nullable="false" />
+          <Property Name="Commentcontent" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Commentflag" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_customerinfo">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="CustomerName" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerPwd" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Customertruename" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerSex" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CustomerTel" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerAddr" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerRegTime" Type="datetime" Nullable="false" />
+          <Property Name="CustomerQues" Type="varchar" MaxLength="200" />
+          <Property Name="CustomerAnswer" Type="varchar" MaxLength="200" />
+          <Property Name="CustomerLogTime" Type="int" Nullable="false" />
+          <Property Name="CustomerLastLogT" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="tb_manager">
           <Key>
             <PropertyRef Name="AdminId" />
@@ -14,11 +81,98 @@
           <Property Name="AdminPwd" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="AdminFlag" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tb_order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Orderdate" Type="datetime" Nullable="false" />
+          <Property Name="Ordermount" Type="int" Nullable="false" />
+          <Property Name="message" Type="varchar" MaxLength="100" />
+          <Property Name="postmethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="paymethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="recevername" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="receveraddr" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="recevertel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="memo" Type="varchar" MaxLength="100" />
+          <Property Name="totalprice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_orderdetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDetailId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="ordermount" Type="int" Nullable="false" />
+          <Property Name="poststatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Recevstatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sigletotalprice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_parameter">
+          <Key>
+            <PropertyRef Name="webname" />
+          </Key>
+          <Property Name="webname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="regtiaoyue" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="notice" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="postcode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="tel" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="copyright" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="weblogo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="website" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="affordmethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="shopstream" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="postmethod" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="postprice" Type="money" Nullable="false" />
+          <Property Name="Postdescp" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="worktime" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="service" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="law" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="commques" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dealrule" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_reply">
+          <Key>
+            <PropertyRef Name="ReplyId" />
+          </Key>
+          <Property Name="ReplyId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="ReplyType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Replytitle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Replycontent" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Customername" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Commentdate" Type="datetime" Nullable="false" />
+          <Property Name="CustomerIP" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_shopbook">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="ordermount" Type="int" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="ispay" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="BookShopModelStoreContainer">
+          <EntitySet Name="tb_bookinfo" EntityType="Self.tb_bookinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_booktypeinfo" EntityType="Self.tb_booktypeinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_comment" EntityType="Self.tb_comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_customerinfo" EntityType="Self.tb_customerinfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_manager" EntityType="Self.tb_manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_order" EntityType="Self.tb_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_orderdetail" EntityType="Self.tb_orderdetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_parameter" EntityType="Self.tb_parameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_reply" EntityType="Self.tb_reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_shopbook" EntityType="Self.tb_shopbook" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -33,7 +187,162 @@
         </EntityType>
         <EntityContainer Name="BookShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_manager" EntityType="Self.tb_manager" />
+          <EntitySet Name="tb_bookinfo" EntityType="BookShopModel.tb_bookinfo" />
+          <EntitySet Name="tb_booktypeinfo" EntityType="BookShopModel.tb_booktypeinfo" />
+          <EntitySet Name="tb_comment" EntityType="BookShopModel.tb_comment" />
+          <EntitySet Name="tb_customerinfo" EntityType="BookShopModel.tb_customerinfo" />
+          <EntitySet Name="tb_order" EntityType="BookShopModel.tb_order" />
+          <EntitySet Name="tb_orderdetail" EntityType="BookShopModel.tb_orderdetail" />
+          <EntitySet Name="tb_parameter" EntityType="BookShopModel.tb_parameter" />
+          <EntitySet Name="tb_reply" EntityType="BookShopModel.tb_reply" />
+          <EntitySet Name="tb_shopbook" EntityType="BookShopModel.tb_shopbook" />
         </EntityContainer>
+        <EntityType Name="tb_bookinfo">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookTypeId" Type="Int32" Nullable="false" />
+          <Property Name="BookName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BookPress" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookPubDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BookSize" Type="Binary" Nullable="false" MaxLength="10" FixedLength="false" />
+          <Property Name="BookVersion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BookAuthor" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BookTanslor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Bookisbn" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BookPages" Type="Int32" Nullable="false" />
+          <Property Name="BookOutline" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BookCatalog" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BookMprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BookPrprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BookDealmount" Type="Int32" Nullable="false" />
+          <Property Name="BookLookmount" Type="Int32" />
+          <Property Name="BookDiscount" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BookPic" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="BookStoremount" Type="Int32" Nullable="false" />
+          <Property Name="BookStoretime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BookPackstyle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_booktypeinfo">
+          <Key>
+            <PropertyRef Name="BookTypeId" />
+          </Key>
+          <Property Name="BookTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Customername" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Commentdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Commentcontent" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Commentflag" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_customerinfo">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="CustomerName" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPwd" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Customertruename" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerSex" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerTel" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerEmail" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerRegTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerQues" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAnswer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerLogTime" Type="Int32" Nullable="false" />
+          <Property Name="CustomerLastLogT" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tb_order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Orderdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ordermount" Type="Int32" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="postmethod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paymethod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="recevername" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="receveraddr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recevertel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="memo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="totalprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="tb_orderdetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDetailId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OrderId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="ordermount" Type="Int32" Nullable="false" />
+          <Property Name="poststatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Recevstatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sigletotalprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="tb_parameter">
+          <Key>
+            <PropertyRef Name="webname" />
+          </Key>
+          <Property Name="webname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="regtiaoyue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="notice" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="tel" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="copyright" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="weblogo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="affordmethod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shopstream" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="postmethod" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="postprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Postdescp" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="worktime" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="service" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="law" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="commques" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dealrule" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_reply">
+          <Key>
+            <PropertyRef Name="ReplyId" />
+          </Key>
+          <Property Name="ReplyId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="ReplyType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Replytitle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Replycontent" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Customername" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Commentdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerIP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tb_shopbook">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="ordermount" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ispay" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -47,6 +356,159 @@
                 <ScalarProperty Name="AdminName" ColumnName="AdminName" />
                 <ScalarProperty Name="AdminPwd" ColumnName="AdminPwd" />
                 <ScalarProperty Name="AdminFlag" ColumnName="AdminFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_bookinfo">
+            <EntityTypeMapping TypeName="BookShopModel.tb_bookinfo">
+              <MappingFragment StoreEntitySet="tb_bookinfo">
+                <ScalarProperty Name="BookPackstyle" ColumnName="BookPackstyle" />
+                <ScalarProperty Name="BookStoretime" ColumnName="BookStoretime" />
+                <ScalarProperty Name="BookStoremount" ColumnName="BookStoremount" />
+                <ScalarProperty Name="BookPic" ColumnName="BookPic" />
+                <ScalarProperty Name="BookDiscount" ColumnName="BookDiscount" />
+                <ScalarProperty Name="BookLookmount" ColumnName="BookLookmount" />
+                <ScalarProperty Name="BookDealmount" ColumnName="BookDealmount" />
+                <ScalarProperty Name="BookPrprice" ColumnName="BookPrprice" />
+                <ScalarProperty Name="BookMprice" ColumnName="BookMprice" />
+                <ScalarProperty Name="BookCatalog" ColumnName="BookCatalog" />
+                <ScalarProperty Name="BookOutline" ColumnName="BookOutline" />
+                <ScalarProperty Name="BookPages" ColumnName="BookPages" />
+                <ScalarProperty Name="BookPrice" ColumnName="BookPrice" />
+                <ScalarProperty Name="Bookisbn" ColumnName="Bookisbn" />
+                <ScalarProperty Name="BookTanslor" ColumnName="BookTanslor" />
+                <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
+                <ScalarProperty Name="BookVersion" ColumnName="BookVersion" />
+                <ScalarProperty Name="BookSize" ColumnName="BookSize" />
+                <ScalarProperty Name="BookPubDate" ColumnName="BookPubDate" />
+                <ScalarProperty Name="BookPress" ColumnName="BookPress" />
+                <ScalarProperty Name="BookType" ColumnName="BookType" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookTypeId" ColumnName="BookTypeId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_booktypeinfo">
+            <EntityTypeMapping TypeName="BookShopModel.tb_booktypeinfo">
+              <MappingFragment StoreEntitySet="tb_booktypeinfo">
+                <ScalarProperty Name="BookTypeName" ColumnName="BookTypeName" />
+                <ScalarProperty Name="BookTypeId" ColumnName="BookTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_comment">
+            <EntityTypeMapping TypeName="BookShopModel.tb_comment">
+              <MappingFragment StoreEntitySet="tb_comment">
+                <ScalarProperty Name="Commentflag" ColumnName="Commentflag" />
+                <ScalarProperty Name="Commentcontent" ColumnName="Commentcontent" />
+                <ScalarProperty Name="Commentdate" ColumnName="Commentdate" />
+                <ScalarProperty Name="Customername" ColumnName="Customername" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_customerinfo">
+            <EntityTypeMapping TypeName="BookShopModel.tb_customerinfo">
+              <MappingFragment StoreEntitySet="tb_customerinfo">
+                <ScalarProperty Name="CustomerLastLogT" ColumnName="CustomerLastLogT" />
+                <ScalarProperty Name="CustomerLogTime" ColumnName="CustomerLogTime" />
+                <ScalarProperty Name="CustomerAnswer" ColumnName="CustomerAnswer" />
+                <ScalarProperty Name="CustomerQues" ColumnName="CustomerQues" />
+                <ScalarProperty Name="CustomerRegTime" ColumnName="CustomerRegTime" />
+                <ScalarProperty Name="CustomerAddr" ColumnName="CustomerAddr" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerTel" ColumnName="CustomerTel" />
+                <ScalarProperty Name="CustomerSex" ColumnName="CustomerSex" />
+                <ScalarProperty Name="Customertruename" ColumnName="Customertruename" />
+                <ScalarProperty Name="CustomerPwd" ColumnName="CustomerPwd" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_order">
+            <EntityTypeMapping TypeName="BookShopModel.tb_order">
+              <MappingFragment StoreEntitySet="tb_order">
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="recevertel" ColumnName="recevertel" />
+                <ScalarProperty Name="receveraddr" ColumnName="receveraddr" />
+                <ScalarProperty Name="recevername" ColumnName="recevername" />
+                <ScalarProperty Name="paymethod" ColumnName="paymethod" />
+                <ScalarProperty Name="postmethod" ColumnName="postmethod" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="Ordermount" ColumnName="Ordermount" />
+                <ScalarProperty Name="Orderdate" ColumnName="Orderdate" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_orderdetail">
+            <EntityTypeMapping TypeName="BookShopModel.tb_orderdetail">
+              <MappingFragment StoreEntitySet="tb_orderdetail">
+                <ScalarProperty Name="sigletotalprice" ColumnName="sigletotalprice" />
+                <ScalarProperty Name="Recevstatus" ColumnName="Recevstatus" />
+                <ScalarProperty Name="poststatus" ColumnName="poststatus" />
+                <ScalarProperty Name="ordermount" ColumnName="ordermount" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_parameter">
+            <EntityTypeMapping TypeName="BookShopModel.tb_parameter">
+              <MappingFragment StoreEntitySet="tb_parameter">
+                <ScalarProperty Name="dealrule" ColumnName="dealrule" />
+                <ScalarProperty Name="commques" ColumnName="commques" />
+                <ScalarProperty Name="law" ColumnName="law" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="worktime" ColumnName="worktime" />
+                <ScalarProperty Name="Postdescp" ColumnName="Postdescp" />
+                <ScalarProperty Name="postprice" ColumnName="postprice" />
+                <ScalarProperty Name="postmethod" ColumnName="postmethod" />
+                <ScalarProperty Name="shopstream" ColumnName="shopstream" />
+                <ScalarProperty Name="affordmethod" ColumnName="affordmethod" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="weblogo" ColumnName="weblogo" />
+                <ScalarProperty Name="copyright" ColumnName="copyright" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="notice" ColumnName="notice" />
+                <ScalarProperty Name="regtiaoyue" ColumnName="regtiaoyue" />
+                <ScalarProperty Name="webname" ColumnName="webname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_reply">
+            <EntityTypeMapping TypeName="BookShopModel.tb_reply">
+              <MappingFragment StoreEntitySet="tb_reply">
+                <ScalarProperty Name="CustomerIP" ColumnName="CustomerIP" />
+                <ScalarProperty Name="Commentdate" ColumnName="Commentdate" />
+                <ScalarProperty Name="Customername" ColumnName="Customername" />
+                <ScalarProperty Name="Replycontent" ColumnName="Replycontent" />
+                <ScalarProperty Name="Replytitle" ColumnName="Replytitle" />
+                <ScalarProperty Name="ReplyType" ColumnName="ReplyType" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ReplyId" ColumnName="ReplyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_shopbook">
+            <EntityTypeMapping TypeName="BookShopModel.tb_shopbook">
+              <MappingFragment StoreEntitySet="tb_shopbook">
+                <ScalarProperty Name="ispay" ColumnName="ispay" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="ordermount" ColumnName="ordermount" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

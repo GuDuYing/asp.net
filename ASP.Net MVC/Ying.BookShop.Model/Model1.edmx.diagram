@@ -6,6 +6,15 @@
     <edmx:Diagrams>
       <Diagram DiagramId="8b611b033ad042218be6f582970f9e40" Name="Diagram1">
         <EntityTypeShape EntityType="BookShopModel.tb_manager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.tb_bookinfo" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_booktypeinfo" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_comment" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_customerinfo" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_order" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_orderdetail" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_parameter" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_reply" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BookShopModel.tb_shopbook" Width="1.5" PointX="7.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

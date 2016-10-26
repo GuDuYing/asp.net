@@ -26,5 +26,14 @@ namespace Ying.BookShop.Model
         }
     
         public virtual DbSet<tb_manager> tb_manager { get; set; }
+        public virtual DbSet<tb_bookinfo> tb_bookinfo { get; set; }
+        public virtual DbSet<tb_booktypeinfo> tb_booktypeinfo { get; set; }
+        public virtual DbSet<tb_comment> tb_comment { get; set; }
+        public virtual DbSet<tb_customerinfo> tb_customerinfo { get; set; }
+        public virtual DbSet<tb_order> tb_order { get; set; }
+        public virtual DbSet<tb_orderdetail> tb_orderdetail { get; set; }
+        public virtual DbSet<tb_parameter> tb_parameter { get; set; }
+        public virtual DbSet<tb_reply> tb_reply { get; set; }
+        public virtual DbSet<tb_shopbook> tb_shopbook { get; set; }
     }
 }
