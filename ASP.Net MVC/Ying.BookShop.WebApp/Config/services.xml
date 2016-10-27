@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+  <object name="customerInfo" type="Ying.BookShop.BLL.tb_customerinfoService, Ying.BookShop.BLL" singleton="false" >
+  </object>
+
+  <object name="manage" type="Ying.BookShop.BLL.tb_managerService, Ying.BookShop.BLL" singleton="false"></object>
+</objects>

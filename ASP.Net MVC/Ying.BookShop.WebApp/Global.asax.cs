@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spring.Web.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,7 @@ using System.Web.Routing;
 
 namespace Ying.BookShop.WebApp
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : SpringMvcApplication       
     {
         protected void Application_Start()
         {
