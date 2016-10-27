@@ -40,7 +40,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseService.cs" />
+    <Compile Include="IManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IManager.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="IManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IManager.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ying.BookShop.DALFactory\Ying.BookShop.DALFactory.csproj">
+      <Project>{b58578cb-01da-43c8-8ef7-c2451b4aba13}</Project>
+      <Name>Ying.BookShop.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ying.BookShop.IBLL\Ying.BookShop.IBLL.csproj">
+      <Project>{38547b16-19a1-4c25-9535-a12ad9db7867}</Project>
+      <Name>Ying.BookShop.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ying.BookShop.IDAL\Ying.BookShop.IDAL.csproj">
+      <Project>{42d530be-a8be-45bf-9693-919d829e0593}</Project>
+      <Name>Ying.BookShop.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ying.BookShop.Model\Ying.BookShop.Model.csproj">
+      <Project>{e2db5e3d-6354-481d-bd12-29a235f35ac6}</Project>
+      <Name>Ying.BookShop.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

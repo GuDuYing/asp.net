@@ -17,20 +17,16 @@ string namespaceName = code.VsNamespaceSuggestion();
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
 #>
-using Ying.BookShop.DAL;
-using Ying.BookShop.IDAL;
+using Ying.BookShop.IBLL;
 using Ying.BookShop.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ying.BookShop.DALFactory
+namespace Ying.BookShop.BLL
 {
-	public partial class DBSession : IDBSession
-    {
 <#
 // Emit Entity Types
 
@@ -39,19 +35,15 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
     //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
     //BeginNamespace(namespaceName, code);    
 #>	
-		private I<#=entity.Name#>Dal _<#=entity.Name#>Dal;
-        public I<#=entity.Name#>Dal <#=entity.Name#>Dal
+	public partial class <#=entity.Name#>Service :BaseService<<#=entity.Name#>>,I<#=entity.Name#>Service
+    {
+    
+
+		 public override void SetCurrentDal()
         {
-            get
-            {
-                if(_<#=entity.Name#>Dal == null)
-                {
-                    _<#=entity.Name#>Dal = AbstractFactory.Create<#=entity.Name#>Dal();
-                }
-                return _<#=entity.Name#>Dal;
-            }
-            set { _<#=entity.Name#>Dal = value; }
+            CurrentDal = this.CurrentDBSession.<#=entity.Name#>Dal;
         }
+    }   
 <#}#>
-	}	
+	
 }

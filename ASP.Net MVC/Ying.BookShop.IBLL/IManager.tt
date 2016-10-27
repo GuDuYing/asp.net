@@ -17,20 +17,17 @@ string namespaceName = code.VsNamespaceSuggestion();
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
 #>
-using Ying.BookShop.DAL;
-using Ying.BookShop.IDAL;
+
 using Ying.BookShop.Model;
+using Ying.BookShop.Model.Search;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ying.BookShop.DALFactory
+namespace Ying.BookShop.IBLL
 {
-	public partial class DBSession : IDBSession
-    {
 <#
 // Emit Entity Types
 
@@ -39,19 +36,10 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
     //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
     //BeginNamespace(namespaceName, code);    
 #>	
-		private I<#=entity.Name#>Dal _<#=entity.Name#>Dal;
-        public I<#=entity.Name#>Dal <#=entity.Name#>Dal
-        {
-            get
-            {
-                if(_<#=entity.Name#>Dal == null)
-                {
-                    _<#=entity.Name#>Dal = AbstractFactory.Create<#=entity.Name#>Dal();
-                }
-                return _<#=entity.Name#>Dal;
-            }
-            set { _<#=entity.Name#>Dal = value; }
-        }
+	public partial interface I<#=entity.Name#>Service : IBaseService<<#=entity.Name#>>
+    {
+       
+    }   
 <#}#>
-	}	
+	
 }

@@ -21,7 +21,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_bookinfoDal == null)
                 {
-                    _tb_bookinfoDal = new tb_bookinfoDal();
+                    _tb_bookinfoDal = AbstractFactory.Createtb_bookinfoDal();
                 }
                 return _tb_bookinfoDal;
             }
@@ -35,7 +35,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_booktypeinfoDal == null)
                 {
-                    _tb_booktypeinfoDal = new tb_booktypeinfoDal();
+                    _tb_booktypeinfoDal = AbstractFactory.Createtb_booktypeinfoDal();
                 }
                 return _tb_booktypeinfoDal;
             }
@@ -49,7 +49,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_commentDal == null)
                 {
-                    _tb_commentDal = new tb_commentDal();
+                    _tb_commentDal = AbstractFactory.Createtb_commentDal();
                 }
                 return _tb_commentDal;
             }
@@ -63,7 +63,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_customerinfoDal == null)
                 {
-                    _tb_customerinfoDal = new tb_customerinfoDal();
+                    _tb_customerinfoDal = AbstractFactory.Createtb_customerinfoDal();
                 }
                 return _tb_customerinfoDal;
             }
@@ -77,7 +77,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_managerDal == null)
                 {
-                    _tb_managerDal = new tb_managerDal();
+                    _tb_managerDal = AbstractFactory.Createtb_managerDal();
                 }
                 return _tb_managerDal;
             }
@@ -91,7 +91,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_orderDal == null)
                 {
-                    _tb_orderDal = new tb_orderDal();
+                    _tb_orderDal = AbstractFactory.Createtb_orderDal();
                 }
                 return _tb_orderDal;
             }
@@ -105,7 +105,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_orderdetailDal == null)
                 {
-                    _tb_orderdetailDal = new tb_orderdetailDal();
+                    _tb_orderdetailDal = AbstractFactory.Createtb_orderdetailDal();
                 }
                 return _tb_orderdetailDal;
             }
@@ -119,7 +119,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_parameterDal == null)
                 {
-                    _tb_parameterDal = new tb_parameterDal();
+                    _tb_parameterDal = AbstractFactory.Createtb_parameterDal();
                 }
                 return _tb_parameterDal;
             }
@@ -133,7 +133,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_replyDal == null)
                 {
-                    _tb_replyDal = new tb_replyDal();
+                    _tb_replyDal = AbstractFactory.Createtb_replyDal();
                 }
                 return _tb_replyDal;
             }
@@ -147,7 +147,7 @@ namespace Ying.BookShop.DALFactory
             {
                 if(_tb_shopbookDal == null)
                 {
-                    _tb_shopbookDal = new tb_shopbookDal();
+                    _tb_shopbookDal = AbstractFactory.Createtb_shopbookDal();
                 }
                 return _tb_shopbookDal;
             }

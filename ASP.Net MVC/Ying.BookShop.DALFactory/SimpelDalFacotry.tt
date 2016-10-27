@@ -9,7 +9,7 @@ MetadataLoader loader = new MetadataLoader(this);
 CodeRegion region = new CodeRegion(this, 1);
 MetadataTools ef = new MetadataTools(this);
 
-string inputFile = @"..\\Ying.BookShop.Model\\Model1.edmx";
+string inputFile =@"..\\Ying.BookShop.Model\\Model1.edmx";
 
 EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
 string namespaceName = code.VsNamespaceSuggestion();
@@ -17,41 +17,34 @@ string namespaceName = code.VsNamespaceSuggestion();
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 
 #>
-using Ying.BookShop.DAL;
+
 using Ying.BookShop.IDAL;
-using Ying.BookShop.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ying.BookShop.DALFactory
 {
-	public partial class DBSession : IDBSession
+    public partial class AbstractFactory
     {
+      
+   
 <#
-// Emit Entity Types
-
 foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
-{
-    //fileManager.StartNewFile(entity.Name + "RepositoryExt.cs");
-    //BeginNamespace(namespaceName, code);    
-#>	
-		private I<#=entity.Name#>Dal _<#=entity.Name#>Dal;
-        public I<#=entity.Name#>Dal <#=entity.Name#>Dal
+{    
+#>		
+	    public static I<#=entity.Name#>Dal Create<#=entity.Name#>Dal()
         {
-            get
-            {
-                if(_<#=entity.Name#>Dal == null)
-                {
-                    _<#=entity.Name#>Dal = AbstractFactory.Create<#=entity.Name#>Dal();
-                }
-                return _<#=entity.Name#>Dal;
-            }
-            set { _<#=entity.Name#>Dal = value; }
+
+		 string fullClassName = NameSpace + ".<#=entity.Name#>Dal";
+          return CreateInstance(fullClassName) as I<#=entity.Name#>Dal;
+
         }
 <#}#>
-	}	
+	}
+	
 }
