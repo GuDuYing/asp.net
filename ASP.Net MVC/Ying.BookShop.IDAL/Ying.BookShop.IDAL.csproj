@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IDbSession.tt</DependentUpon>
     </Compile>
+    <Compile Include="IDBSession1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
