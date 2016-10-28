@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Ying.BookShop.WebApp.Controllers
+namespace Ying.BookShop.WebApp.Account.User
 {
-    public class LoginController : Controller
+    public class RegisterController : Controller
     {
-        // GET: Login
+        // GET: Register
         public ActionResult Index()
         {
             return View();
